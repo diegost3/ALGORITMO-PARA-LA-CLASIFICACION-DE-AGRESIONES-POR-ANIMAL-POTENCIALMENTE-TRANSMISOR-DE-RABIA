@@ -57,21 +57,25 @@ const questions = {
     },
     exposicion_grave: {
         text: "Clasificación: Exposición Grave. Vacunación antirrábica esquema post-exposición e inmunoglobulina antirrábica.",
-        options: [],
+        options: [
+            { text: "Volver al inicio", next: "start" }
+        ],
     },
     exposicion_leve: {
         text: "Clasificación: Exposición Leve. Vacunación antirrábica post-exposición recomendada.",
-        options: [],
+        options: [
+            { text: "Volver al inicio", next: "start" }
+        ],
     },
     no_exposicion: {
         text: "Clasificación: No exposición. Remitir cha de noticación de manera inmediata a salud ambiental para la observación del perro gato por mínimo 10 días.",
-        options: [
-            {text: "Siguiente", next: "no_exposicion_sig"}
-        ],
+        options: [],
     },
     No_hace_parte_aptr: {
         text:"No hace parte de la Vigilancia de APTR",
-        options:[],  
+        options:[
+            { text: "Volver al inicio", next: "start" }
+        ],  
     },
 
     no_exposicion_sig: {
@@ -84,6 +88,16 @@ function nextQuestion(key) {
 
     // Mostrar texto de la pregunta
     document.getElementById("question-text").textContent = question.text;
+
+    // Si llegamos a la pregunta 'no_exposicion', mostrar la alerta automáticamente
+    if (key === "no_exposicion") {
+        setTimeout(() => {
+            alert("Si el perro o gato durante el periodo de observación FALLECE O presenta SIGNOS compatibles con rabia, el paciente deberá ser reclasicado como exposición grave e iniciar esquema post-exposición antirrábica");
+
+            // Después de la alerta, regresar al inicio
+            nextQuestion("start");
+        }, 500); // Mostrar la alerta después de medio segundo
+    }
 
     // Crear botones para las opciones
     const optionsContainer = document.getElementById("options");
