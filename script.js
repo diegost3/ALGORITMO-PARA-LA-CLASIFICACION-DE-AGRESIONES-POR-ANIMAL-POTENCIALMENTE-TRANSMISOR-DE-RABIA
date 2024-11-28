@@ -108,7 +108,7 @@ function nextQuestion(key) {
 
             // Después de la alerta, regresar al inicio
             nextQuestion("start");
-        }, 500); // Mostrar la alerta después de medio segundo
+        }, 1000); // Mostrar la alerta después de un segundo
     } else if (key === "exposicion_leve") {
         appContainer.classList.add("exposicion-leve");
     } else if (key === "exposicion_grave") {
