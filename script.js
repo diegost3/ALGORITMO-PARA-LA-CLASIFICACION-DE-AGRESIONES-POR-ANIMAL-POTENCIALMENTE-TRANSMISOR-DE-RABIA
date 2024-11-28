@@ -13,11 +13,11 @@ const questions = {
             { text: "No", next: "observable" },
         ],
     },
-    Mamifero:{
+    Mamifero: {
         text: "Es otro mamifero?",
         options: [
-            {text: "Sí", next:"raton_rata_ardilla"},
-            {text: "No", next:"No_hace_parte_aptr"},
+            {text: "Sí", next: "raton_rata_ardilla"},
+            {text: "No", next: "No_hace_parte_aptr"},
         ],
     },
     raton_rata_ardilla: {
@@ -73,13 +73,16 @@ const questions = {
     },
     No_hace_parte_aptr: {
         text:"No hace parte de la Vigilancia de APTR",
-        options:[
+        options: [
             { text: "Volver al inicio", next: "start" }
         ],  
     },
 
     no_exposicion_sig: {
         text: "Si el perro o gato durante el periodo de observación FALLECE O presenta SIGNOS compatibles con rabia, el paciente deberá ser reclasicado como exposición grave e iniciar esquema post-exposición antirrábica",
+        options: [
+            { text: "Volver al inicio", next: "start" }
+        ],
     },
 };
 
@@ -89,19 +92,31 @@ function nextQuestion(key) {
     // Mostrar texto de la pregunta
     document.getElementById("question-text").textContent = question.text;
 
-    // Si llegamos a la pregunta 'no_exposicion', mostrar la alerta automáticamente
+    // Cambiar el color de fondo del contenedor según la clasificación
+    const appContainer = document.getElementById("app");
+
+    // Limpiar clases previas
+    appContainer.classList.remove("no-exposicion", "exposicion-leve", "exposicion-grave");
+
+    // Agregar la clase correspondiente
     if (key === "no_exposicion") {
+        appContainer.classList.add("no-exposicion");
+
+        // Mostrar la alerta automáticamente
         setTimeout(() => {
             alert("Si el perro o gato durante el periodo de observación FALLECE O presenta SIGNOS compatibles con rabia, el paciente deberá ser reclasicado como exposición grave e iniciar esquema post-exposición antirrábica");
 
             // Después de la alerta, regresar al inicio
             nextQuestion("start");
         }, 500); // Mostrar la alerta después de medio segundo
+    } else if (key === "exposicion_leve") {
+        appContainer.classList.add("exposicion-leve");
+    } else if (key === "exposicion_grave") {
+        appContainer.classList.add("exposicion-grave");
     }
-
     // Crear botones para las opciones
     const optionsContainer = document.getElementById("options");
-    optionsContainer.innerHTML = "";
+    optionsContainer.innerHTML = ""; // Limpiar las opciones anteriores
 
     question.options.forEach((option) => {
         const button = document.createElement("button");
