@@ -1,42 +1,173 @@
+/* General Body Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: white;  /* Fondo blanco de la página */
+    color: #212529;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f8f9fa;
-    color: #212529;
+    flex-direction: column;
+    position: relative;
 }
 
+/* Title outside the container */
+#main-title {
+    font-size: 2rem;
+    color: #078838;  /* Título en el mismo verde de los logos */
+    margin-bottom: 20px;
+    text-align: center;
+    position: absolute;
+    top: 10%;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil para el título */
+}
+
+/* Main Algorithm Container */
 #app {
     text-align: center;
-    background: white;
+    background-color: #078838; /* Fondo verde por defecto */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Sombra suave en el contenedor */
     width: 90%;
     max-width: 500px;
+    transition: background-color 0.3s ease; /* Para transición suave de fondo */
 }
 
-h1 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+/* Clases para colores de fondo según las clasificaciones */
+.no-exposicion {
+    background-color: #2bb572; /* Color verde para no exposición */
 }
 
+.exposicion-leve {
+    background-color: #ab6cad; /* Color morado para exposición leve */
+}
+
+.exposicion-grave {
+    background-color: #be1d2c; /* Color rojo para exposición grave */
+}
+
+/* Footer with Logos */
+footer {
+    width: 100%;
+    padding: 20px 0;  /* Aumentar el espacio para no hacerlo tan estrecho */
+    background-color: #078838;  /* Fondo verde del footer */
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;  /* Mayor espacio entre los logos */
+    flex-wrap: wrap;  /* Asegura que los logos no se desborden en pantallas pequeñas */
+    box-sizing: border-box;  /* Asegura que el tamaño no se salga de los márgenes */
+    border-top: 2px solid #fff;  /* Línea blanca separadora */
+    padding-top: 1px;
+    font-size: 0.9rem;  /* Ajustar el tamaño de fuente del footer */
+    color: #fff;  /* Texto blanco en el footer */
+}
+
+/* Añadir texto en el footer */
+footer .footer-text {
+    font-size: 0.8rem;  /* Texto pequeño para el copyright o notas legales */
+    color: rgba(255, 255, 255, 0.7);  /* Color sutil para no competir con los logos */
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Logo styles */
+footer img {
+    max-width: 80px;  /* Tamaño más pequeño para los logos */
+    height: auto;
+    transition: transform 0.3s ease, filter 0.3s ease;  /* Suaviza el efecto de hover */
+    filter: brightness(0) invert(1);  /* Efecto de brillo invertido para los logos */
+}
+
+/* Hover effect for logos */
+footer img:hover {
+    transform: scale(1.1);  /* Efecto de agrandar los logos al pasar el mouse */
+    filter: brightness(1.2);  /* Hace que los logos brillen un poco más al pasar el mouse */
+}
+
+/* Ensuring responsiveness for smaller screens */
+@media (max-width: 800px) {
+    #main-title {
+        font-size: 1.5rem;
+    }
+
+    footer {
+        gap: 20px;  /* Reducir el espacio entre logos */
+    }
+
+    footer img {
+        max-width: 70px;  /* Ajuste de tamaño para pantallas medianas */
+    }
+}
+
+@media (max-width: 600px) {
+    #main-title {
+        font-size: 1.2rem;  /* Menor tamaño de título en pantallas más pequeñas */
+    }
+
+    footer {
+        gap: 15px;  /* Más reducción de espacio entre logos */
+    }
+
+    footer img {
+        max-width: 50px;  /* Tamaño aún más pequeño para pantallas móviles */
+    }
+
+    footer .footer-text {
+        font-size: 0.7rem;  /* Tamaño de fuente más pequeño en móviles */
+    }
+}
+
+/* Question Text and Buttons */
 #question-text {
     font-size: 1.2rem;
     margin-bottom: 20px;
+    color: white;  /* Texto blanco para contraste */
 }
 
 #options button {
-    background-color: #007bff;
-    color: white;
-    border: none;
+    background-color: white;  /* Botones con fondo blanco */
+    color: #078838;  /* Texto de los botones en el mismo verde */
+    border: 2px solid #078838;  /* Borde del botón en el mismo verde */
     padding: 10px 20px;
     margin: 10px;
-    border-radius: 5px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease; /* Suaviza la transición al pasar el mouse */
+}
+
+/* Hover effect with contrast */
+#options button:hover {
+    background-color: #ffffff;  /* Fondo blanco cuando pase el mouse */
+    color: #078838;  /* Texto blanco */
+    border: 2px solid #ffffff;  /* Borde blanco al hacer hover */
+}
+
+/* Estilo del hover cuando se pasa sobre los botones en cada clasificación */
+.no-exposicion #options button:hover {
+    background-color: #2bb572;  /* Fondo verde para no exposición */
+    color: white;  /* Texto blanco al hacer hover */
+    border: 2px solid #2bb572;  /* Borde verde al hacer hover */
+}
+
+.exposicion-leve #options button:hover {
+    background-color: #ab6cad;  /* Fondo morado para exposición leve */
+    color: white;  /* Texto blanco al hacer hover */
+    border: 2px solid #ab6cad;  /* Borde morado al hacer hover */
+}
+
+.exposicion-grave #options button:hover {
+    background-color: #be1d2c;  /* Fondo rojo para exposición grave */
+    color: white;  /* Texto blanco al hacer hover */
+    border: 2px solid #be1d2c;  /* Borde rojo al hacer hover */
+}
     cursor: pointer;
     font-size: 1rem;
 }
